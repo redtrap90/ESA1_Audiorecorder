@@ -33,13 +33,13 @@ if __name__ == "__main__":
     print(
         f"Starte Aufnahme von {url} für {duration} Sekunden (Blockgröße:{blocksize} Bytes)"
     )  # Feedback, dass die Aufnahme startet
-# Audiorekorder Script
-start_zeit = datetime.datetime.now()
+    # Audiorekorder Script
+    start_zeit = datetime.datetime.now()
 
-with urllib.request.urlopen(url) as stream:
-    with open(filename, 'wb') as file:
-        # Schleife läuft so lange Start+Dauer < aktuelle Zeit
-        while (datetime.datetime.now() < start_zeit + datetime.timedelta(seconds=duration)):
-            file.write(stream.read(blocksize))
+    with urllib.request.urlopen(url) as stream:
+        with open(filename, 'wb') as file:
+            # Schleife läuft so lange Start+Dauer < aktuelle Zeit
+            while (datetime.datetime.now() < start_zeit + datetime.timedelta(seconds=duration)):
+                file.write(stream.read(blocksize))
 
     print("Aufnahme erfolgreich beendet!")  # Feedback, dass die Aufnahme erfolgte
